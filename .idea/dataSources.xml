@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="ticket@localhost" uuid="92c5d418-8635-4613-84a8-9b645b06faf5">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/ticket</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="ticket@localhost [2]" uuid="8126ebfd-c5da-45ec-bf05-55b7b20a4653">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/ticket</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="ticket@localhost [3]" uuid="a9ef2b01-ad87-4dfa-8d8a-bb3ddd888335">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/ticket</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="ticket@localhost [4]" uuid="ca3d4582-efe4-4591-b4c0-01d95e0cc535">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/ticket</jdbc-url>
+    </data-source>
+  </component>
+</project>

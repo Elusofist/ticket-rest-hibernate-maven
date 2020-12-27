@@ -1,0 +1,11 @@
+.bgimg {
+    flex: content-box;
+    width: auto;
+    height: auto;
+    align-content: center;
+    background-image: url("https://i.pinimg.com/originals/d6/d1/e0/d6d1e0bbdd2eda8f44a2125154670e82.gif");
+}
+
+.lemonchiffon {
+    background-color: darkblue;
+}

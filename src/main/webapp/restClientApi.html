@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rest Client Airplane Ticket Reservation</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+</head>
+<body>
+<!--<form>-->
+<!--    <select name="api" id="api">-->
+<!--        <option value="get">GET</option>-->
+<!--        <option value="post">POST</option>-->
+<!--        <option value="put">PUT</option>-->
+<!--        <option value="delete">DELETE</option>-->
+<!--    </select>-->
+<!--    <input type="text" name="url" placeholder="URL" id="url">-->
+<!--    <input type="submit" value="Send" id="send" onclick="startProcessing()">-->
+<!--</form>-->
+<button id="btn">GET</button>
+<p id="p1"></p>
+<script>
+    function addNewTicket() {
+        console.log("started");
+        $.ajax({
+            url: $("#url").val(),
+            type: 'POST',
+            contentType: 'application/json',
+            success: function (result) {
+                $("#p1").append(result);
+            },
+            error: function (xhr, resp, text) {
+                console.log(xhr, resp, text);
+            }
+        });
+    }
+
+    $("#btn").click( function(){
+        $.ajax({
+            type:"GET",
+            url:"http://localhost:8080/TicketHibernate_war/api/tickets",
+            success :function (result){
+                console.log("hello");
+                console.log(result);
+                console.log(result.name);
+                document.getElementById("myId").innerText = JSON.stringify(result);
+            },
+            error:function (result){
+                $("#myId").text(JSON.stringify(result));
+            }
+        });
+    });
+
+    function updateTicket() {
+        $.ajax({
+            url: $("#url").val(),
+            type: 'PUT',
+            contentType: 'application/json',
+            success: function (result) {
+                $("#p1").append(result);
+            },
+            error: function (xhr, resp, text) {
+                console.log(xhr, resp, text);
+            }
+        });
+    }
+
+    function cancelTicket() {
+        $.ajax({
+            url: $("#url").val(),
+            type: 'DELETE',
+            contentType: 'application/json',
+            success: function (result) {
+                $("#p1").append(result);
+            },
+            error: function (xhr, resp, text) {
+                console.log(xhr, resp, text);
+            }
+        });
+    }
+
+    function startProcessing() {
+        console.log("JAFRAQA");
+        switch (("#api").valueOf()) {
+            case "get":
+                getTicket();
+                break;
+            case "post":
+                addNewTicket();
+                break;
+            case "put":
+                updateTicket();
+                break;
+            default:
+                cancelTicket();
+        }
+    }
+</script>
+</body>
+</html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Rest Client</title>-->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<button id="get">Get</button><br>-->
+
+<!--<input id="getId" type="number"><br>-->
+<!--<button id="getById">Get By ID</button><br>-->
+
+<!--Passenger Full Name: <input type="text" id="fullName" required><br>-->
+<!--Passenger Origin: <input type="text" id="origin" required><br>-->
+<!--Passenger Destination: <input type="text" id="destination" required><br>-->
+<!--Passenger Departure Date: <input type="text" id="departureDate" required><br>-->
+<!--Passenger FlightNumber: <input type="number" id="flightNumber" required><br>-->
+<!--<button id="post">Post</button><br>-->
+
+<!--Passenger Full Name: <input type="text" id="fullName1" required><br>-->
+<!--Passenger Origin: <input type="text" id="origin1" required><br>-->
+<!--Passenger Destination: <input type="text" id="destination1" required><br>-->
+<!--Passenger Departure Date: <input type="text" id="departureDate1" required><br>-->
+<!--Passenger FlightNumber: <input type="number" id="flightNumber1" required><br>-->
+<!--Passenger TicketId: <input type="number" id="id1" required><br>-->
+<!--<button id="put">Put</button><br>-->
+
+<!--<input id="deleteId" type="number"><br>-->
+<!--<button id="deleteById">Delete By ID</button><br>-->
+
+<!--<p id="myId"></p>-->
+
+<!--<script>-->
+<!--    $("#get").click( function(){-->
+<!--        $.ajax({-->
+<!--            type:"GET",-->
+<!--            url:"http://localhost:8080/TicketHibernate_war/api/tickets",-->
+<!--            success :function (result){-->
+<!--                console.log("hello");-->
+<!--                console.log(result);-->
+<!--                console.log(result.name);-->
+<!--                document.getElementById("myId").innerText = JSON.stringify(result);-->
+<!--            },-->
+<!--            error:function (result){-->
+<!--                $("#myId").text(JSON.stringify(result));-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+
+<!--    $("#getById").click( function(){-->
+<!--        var id = $("#getId").val();-->
+<!--        $.ajax({-->
+<!--            type:"GET",-->
+<!--            url:"http://localhost:8080/TicketHibernate_war/api/tickets/"+id,-->
+<!--            success :function (result){-->
+<!--                console.log("hello");-->
+<!--                console.log(result);-->
+<!--                console.log(result.name);-->
+<!--                document.getElementById("myId").innerText = JSON.stringify(result);-->
+<!--            },-->
+<!--            error:function (result){-->
+<!--                $("#myId").text(JSON.stringify(result));-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+
+<!--    $("#post").click( function(){-->
+<!--        var destination1 = $("#destination").val();-->
+<!--        var flightNumber1 = $("#flightNumber").val();-->
+<!--        var origin1 = $("#origin").val();-->
+<!--        var passengerFullName1 = $("#fullName").val();-->
+<!--        var date = $("#departureDate").val();-->
+<!--        //var date = new Date(strDate);-->
+<!--        var arr = { destination: destination1, flightNumber: flightNumber1, origin:origin1, passengerFullName: passengerFullName1, departureDate: date};-->
+<!--        $.ajax({-->
+<!--            url:"http://localhost:8080/TicketHibernate_war/api/tickets",-->
+<!--            type:"POST",-->
+<!--            data: JSON.stringify(arr),-->
+<!--            contentType: 'application/json; charset=utf-8',-->
+<!--            dataType: 'json',-->
+<!--            async: false,-->
+<!--            success :function (result){-->
+<!--                document.getElementById("myId").innerText="The ticket is created"-->
+<!--            },-->
+<!--            error:function (result){-->
+<!--                alert(result);-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+
+<!--    function convertToJSONDate(strDate){-->
+<!--        var splitted = strDate.split("/");-->
+<!--        var dt = new Date(splitted[0],splitted[1],splitted[2]);-->
+<!--        var newDate = new Date(Date.UTC(dt.getFullYear(), dt.getMonth(), dt.getDate(), dt.getHours(), dt.getMinutes(), dt.getSeconds(), dt.getMilliseconds()));-->
+<!--        return newDate;-->
+<!--    }-->
+
+<!--    $("#put").click( function(){-->
+<!--        var destination1 = $("#destination1").val();-->
+<!--        var flightNumber1 = $("#flightNumber1").val();-->
+<!--        var origin1 = $("#origin1").val();-->
+<!--        var passengerFullName1 = $("#fullName1").val();-->
+<!--        var strDate = $("#departureDate1").val();-->
+<!--        var id = $("#id1").val();-->
+<!--        var arr = { destination: destination1, flightNumber: flightNumber1, origin:origin1, passengerFullName: passengerFullName1, departureDate: strDate};-->
+<!--        $.ajax({-->
+<!--            url:"http://localhost:8080/TicketHibernate_war/api/tickets/"+id,-->
+<!--            type:"PUT",-->
+<!--            data: JSON.stringify(arr),-->
+<!--            contentType: 'application/json; charset=utf-8',-->
+<!--            dataType: 'json',-->
+<!--            async: false,-->
+<!--            success :function (result){-->
+<!--                document.getElementById("myId").innerText = JSON.stringify(result);-->
+<!--            },-->
+<!--            error:function (result){-->
+<!--                alert(result);-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+
+<!--    $("#deleteById").click( function(){-->
+<!--        var id = $("#deleteId").val();-->
+<!--        $.ajax({-->
+<!--            type:"DELETE",-->
+<!--            url:"http://localhost:8080/TicketHibernate_war/api/tickets/"+id,-->
+<!--            success :function (result){-->
+<!--                document.getElementById("myId").innerText = JSON.stringify(result);-->
+<!--            },-->
+<!--            error:function (result){-->
+<!--                $("#myId").text(JSON.stringify(result));-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->

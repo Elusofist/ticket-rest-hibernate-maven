@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <!--    ////////////////////////REST API Configuration////////////////////////////-->
+
+    <servlet>
+        <servlet-name>ticketRest</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>rest</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ticketRest</servlet-name>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+
+    <!--    <servlet>-->
+    <!--        <servlet-name>jersey-servlet</servlet-name>-->
+    <!--        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>-->
+    <!--        &lt;!&ndash; Register resources and providers &ndash;&gt;-->
+    <!--        <init-param>-->
+    <!--            <param-name>jersey.config.server.provider.packages</param-name>-->
+    <!--            <param-value>com.fortinet.experiment.jersey.examples.user_example.service</param-value>-->
+    <!--        </init-param>-->
+    <!--        &lt;!&ndash; Register and configure MvcFeature &ndash;&gt;-->
+    <!--        <init-param>-->
+    <!--            <param-name>jersey.config.server.provider.classnames</param-name>-->
+    <!--            <param-value>org.glassfish.jersey.server.mvc.mustache.MustacheMvcFeature</param-value>-->
+    <!--        </init-param>-->
+    <!--        <init-param>-->
+    <!--            <param-name>jersey.config.server.mvc.templateBasePath.mustache</param-name>-->
+    <!--            <param-value>templates</param-value>-->
+    <!--        </init-param>-->
+    <!--        <load-on-startup>1</load-on-startup>-->
+    <!--    </servlet>-->
+
+    <!--    <servlet-mapping>-->
+    <!--        <servlet-name>jersey-servlet</servlet-name>-->
+    <!--        <url-pattern>/api/*</url-pattern>-->
+    <!--    </servlet-mapping>-->
+
+    <!--    //////////////////////////Servlet Configuration////////////////////////-->
+
+
+    <servlet>
+        <servlet-name>ticketSystem</servlet-name>
+        <servlet-class>servlet.action.TicketServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>buyPre</servlet-name>
+        <servlet-class>servlet.action.BuyPreviewServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>change</servlet-name>
+        <servlet-class>servlet.action.ChangeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cancel</servlet-name>
+        <servlet-class>servlet.action.CancelServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>show</servlet-name>
+        <servlet-class>servlet.action.ShowServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>finalBuy</servlet-name>
+        <servlet-class>servlet.action.FinalBuyServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>finalChange</servlet-name>
+        <servlet-class>servlet.action.FinalChangeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>finalChange</servlet-name>
+        <url-pattern>/finalChange</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>finalBuy</servlet-name>
+        <url-pattern>/finalBuy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>show</servlet-name>
+        <url-pattern>/show</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cancel</servlet-name>
+        <url-pattern>/cancel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>change</servlet-name>
+        <url-pattern>/change</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>buyPre</servlet-name>
+        <url-pattern>/buy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ticketSystem</servlet-name>
+        <url-pattern>/ticketSystem</url-pattern>
+    </servlet-mapping>
+
+
+    <!--  //////////////////////////Filters' Configuration////////////////////////////   -->
+
+    <filter>
+        <filter-name>flightNoValidation</filter-name>
+        <filter-class>servlet.validation.filter.FlightNoFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>flightNoValidation</filter-name>
+        <url-pattern>/buy</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>dateValidation</filter-name>
+        <filter-class>servlet.validation.filter.DateFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>dateValidation</filter-name>
+        <url-pattern>/buy</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>destinationValidation</filter-name>
+        <filter-class>servlet.validation.filter.DestinationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>destinationValidation</filter-name>
+        <url-pattern>/buy</url-pattern>
+    </filter-mapping>
+</web-app>
